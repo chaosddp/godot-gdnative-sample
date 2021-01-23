@@ -1,0 +1,4 @@
+*.obj
+game/.mono
+game/.import
+.sconsign.dblite
