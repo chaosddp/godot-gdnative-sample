@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/Main.gdns" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/art/House In a Forest Loop.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/art/gameover.wav" type="AudioStream" id=6]
+[ext_resource path="res://scripts/GDImGui.gdns" type="Script" id=7]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -50,6 +51,9 @@ stream = ExtResource( 5 )
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
+
+[node name="ImGui" type="Node2D" parent="."]
+script = ExtResource( 7 )
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

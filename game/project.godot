@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "",
+"class": "GDImGui",
+"language": "NativeScript",
+"path": "res://scripts/GDImGui.gdns"
+}, {
+"base": "",
 "class": "HUD",
 "language": "NativeScript",
 "path": "res://scripts/HUD.gdns"
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://scripts/Player.gdns"
 } ]
 _global_script_class_icons={
+"GDImGui": "",
 "HUD": "",
 "Main": "",
 "Mob": "",

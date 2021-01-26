@@ -2,6 +2,17 @@
 import os
 
 from glob import glob
+from shutil import copy2
+
+
+# copy imgui files to scr
+for file in glob("imgui/*.cpp", recursive=False):
+    copy2(file, "src/imgui/")
+
+for file in glob("imgui/*.h", recursive=False):
+    # exclude imconfig.h file, we use to set customized settings.
+    if not file.endswith("imconfig.h"):
+        copy2(file, "src/imgui/")
 
 
 opts = Variables([], ARGUMENTS)
@@ -106,6 +117,7 @@ cpp_library += '.' + str(bits)
 # make sure our binding library is properly includes
 env.Append(CPPPATH=['.',
     lua_headers_path,
+    'src/imgui', # imgui headers
     godot_headers_path,
     cpp_bindings_path + 'include/',
     cpp_bindings_path + 'include/core/',
@@ -117,8 +129,11 @@ env.Append(LIBS=[cpp_library, lua_library])
 env.Append(CPPPATH=['src/'])
 sources = Glob('src/*.cpp')
 
+# grab imgui source
+imgui_sources = Glob('src/imgui/*.cpp')
 
-library = env.SharedLibrary(target=env['target_path'] + env['target_name'] , source=sources)
+
+library = env.SharedLibrary(target=env['target_path'] + env['target_name'] , source=sources + imgui_sources)
 
 Default(library)
 

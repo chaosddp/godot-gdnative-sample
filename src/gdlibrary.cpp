@@ -2,6 +2,7 @@
 #include "mob.h"
 #include "main.h"
 #include "hud.h"
+#include "imgui/gdimgui.h"
 
 extern "C" void GDN_EXPORT godot_gdnative_init(godot_gdnative_init_options *o) {
     godot::Godot::gdnative_init(o);
@@ -19,4 +20,5 @@ extern "C" void GDN_EXPORT godot_nativescript_init(void *handle) {
     godot::register_class<Mob>();
     godot::register_class<Main>();
     godot::register_class<HUD>();
+    godot::register_class<GDImGui>();
 }
