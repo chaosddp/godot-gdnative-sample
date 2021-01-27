@@ -15,6 +15,10 @@ for file in glob("imgui/*.h", recursive=False):
         copy2(file, "src/imgui/")
 
 
+# copy entt file
+copy2("entt/single_include/entt/entt.hpp", "src/entt/")
+
+
 opts = Variables([], ARGUMENTS)
 
 # Gets the standard flags CC, CCX, etc.

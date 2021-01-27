@@ -193,7 +193,7 @@ void GDImGui::render()
 {
     // https://github.com/pkdawson/imgui-godot/blob/master/addons/imgui-godot/ImGuiGD.cs
 
-    if (!_imgui_ctx->WithinFrameScope || !is_visible())
+    if (!_imgui_ctx->WithinFrameScope)
     {
         return;
     }

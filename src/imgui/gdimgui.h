@@ -9,6 +9,7 @@
 #include <MeshInstance2D.hpp>
 #include <VisualServer.hpp>
 #include <Resource.hpp>
+#include <Node.hpp>
 #include <Node2D.hpp>
 #include <Input.hpp>
 #include <InputEvent.hpp>
@@ -28,9 +29,9 @@
 
 using namespace godot;
 
-class GDImGui : public Node2D
+class GDImGui : public Node
 {
-    GODOT_CLASS(GDImGui, Node2D);
+    GODOT_CLASS(GDImGui, Node);
 
     // imgui context for current instance
     ImGuiContext *_imgui_ctx;
