@@ -15,11 +15,6 @@ _global_script_classes=[ {
 "path": "res://scripts/EscWorld.gdns"
 }, {
 "base": "",
-"class": "Entity",
-"language": "NativeScript",
-"path": "res://scripts/Entity.gdns"
-}, {
-"base": "",
 "class": "GDImGui",
 "language": "NativeScript",
 "path": "res://scripts/GDImGui.gdns"
@@ -46,7 +41,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "EcsWorld": "",
-"Entity": "",
 "GDImGui": "",
 "HUD": "",
 "Main": "",

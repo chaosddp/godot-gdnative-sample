@@ -54,6 +54,7 @@ stream = ExtResource( 5 )
 stream = ExtResource( 6 )
 
 [node name="DebugLabel" type="Label" parent="."]
+visible = false
 margin_left = 13.0
 margin_top = 94.0
 margin_right = 216.0
