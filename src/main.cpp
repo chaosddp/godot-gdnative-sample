@@ -27,11 +27,43 @@ Main::~Main()
     _score_timer = nullptr;
     _mob_timer = nullptr;
     _rand = nullptr;
+    _debug_label = nullptr;
 }
 
 void Main::_init()
 {
     _score = 0;
+
+    lua.open_libraries(sol::lib::base, sol::lib::package);
+
+
+    lua.script("print('main._init')");
+
+    // register godot String class
+    lua.new_usertype<String>(
+        "String",
+        sol::call_constructor,
+        sol::factories([](const char* s){ return String(s); })
+    );
+
+    // NOTE: we should  and disable constructing nodes from lua side
+    // use a factory function instead, so we can maintain the reference in c++ side.
+
+    // label class
+    lua.new_usertype<Label>(
+        "Label",
+        "new", sol::no_constructor,
+        "set_text", &Label::set_text
+    );
+    
+    // current node
+    lua.new_usertype<Main>(
+        "Main",
+        "new", sol::no_constructor,
+        "debug_label", &Main::_debug_label
+    );
+
+    lua["Main"] = this;
 }
 
 void Main::_ready()
@@ -48,6 +80,11 @@ void Main::_ready()
     _rand = RandomNumberGenerator::_new();
 
     _rand->randomize();
+
+    _debug_label = get_node<Label>("DebugLabel");
+
+    // NOTE: we have to construct godot:String explicitly
+    lua.script("Main.debug_label:set_text(String('Hello, again.'))");
 }
 
 void Main::_process(float delta)

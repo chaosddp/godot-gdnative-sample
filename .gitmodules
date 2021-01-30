@@ -12,3 +12,6 @@
 [submodule "entt"]
 	path = entt
 	url = https://github.com/skypjack/entt
+[submodule "sol2"]
+	path = sol2
+	url = https://github.com/ThePhD/sol2

@@ -1,4 +1,7 @@
 *.obj
 game/.mono
 game/.import
+src/imgui
+src/entt
+libs/
 .sconsign.dblite

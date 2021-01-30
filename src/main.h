@@ -2,6 +2,8 @@
 #define _MAIN_H_
 
 #include <Godot.hpp>
+#include <String.hpp>
+#include <Label.hpp>
 #include <Node2D.hpp>
 #include <PackedScene.hpp>
 #include <Timer.hpp>
@@ -9,6 +11,9 @@
 #include <Path2D.hpp>
 #include <PathFollow2D.hpp>
 #include <RandomNumberGenerator.hpp>
+
+
+#include "sol/sol.hpp"
 
 #include "player.h"
 #include "mob.h"
@@ -29,6 +34,8 @@ private:
     Timer* _mob_timer = nullptr;
     Timer* _start_timer = nullptr;
 
+    Label* _debug_label = nullptr;
+
     // NOTE: though we can get the reference of Player from scene,
     // but maybe better to make a abstract class work as interface,
     // then here we only maintain the referent of Node2D.
@@ -42,6 +49,8 @@ private:
     RandomNumberGenerator* _rand = nullptr;
 
     HUD* _hud = nullptr;
+
+    sol::state lua;
 
 public:
     static void _register_methods();

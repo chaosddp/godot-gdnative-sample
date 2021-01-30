@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "EcsWorld",
+"language": "NativeScript",
+"path": "res://scripts/EscWorld.gdns"
+}, {
+"base": "",
+"class": "Entity",
+"language": "NativeScript",
+"path": "res://scripts/Entity.gdns"
+}, {
 "base": "",
 "class": "GDImGui",
 "language": "NativeScript",
@@ -35,6 +45,8 @@ _global_script_classes=[ {
 "path": "res://scripts/Player.gdns"
 } ]
 _global_script_class_icons={
+"EcsWorld": "",
+"Entity": "",
 "GDImGui": "",
 "HUD": "",
 "Main": "",
@@ -47,6 +59,10 @@ _global_script_class_icons={
 config/name="godot-gdnative-sample"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+EscWorld="*res://scripts/EscWorld.gdns"
 
 [display]
 

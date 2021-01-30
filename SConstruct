@@ -29,7 +29,7 @@ opts.Add(EnumVariable('target', "Compilation target", 'debug', ['d', 'debug', 'r
 opts.Add(EnumVariable('platform', "Compilation platform", '', ['', 'windows', 'linuxbsd', 'linux', 'osx']))
 opts.Add(EnumVariable('p', "Compilation target, alias for 'platform'", '', ['', 'windows', 'linuxbsd', 'linux', 'osx']))
 opts.Add(BoolVariable('use_llvm', "Use the LLVM / Clang compiler", 'no'))
-opts.Add(PathVariable('target_path', 'The path where the lib is installed.', 'libs/'))
+opts.Add(PathVariable('target_path', 'The path where the lib is installed.', 'game/scripts/'))
 opts.Add(PathVariable('target_name', 'The library name.', 'libnativesample', PathVariable.PathAccept))
 
 # Local dependency paths, adapt them to your setup
@@ -103,6 +103,9 @@ elif env['platform'] == "windows":
 
     env.Append(CPPDEFINES=['WIN32', '_WIN32', '_WINDOWS', '_CRT_SECURE_NO_WARNINGS'])
     env.Append(CCFLAGS=['-W3', '-GR'])
+    env.Append(CXXFLAGS=['/std:c++17'])
+
+
     if env['target'] in ('debug', 'd'):
         env.Append(CPPDEFINES=['_DEBUG'])
         env.Append(CCFLAGS=['-EHsc', '-MDd', '-ZI'])
@@ -122,6 +125,8 @@ cpp_library += '.' + str(bits)
 env.Append(CPPPATH=['.',
     lua_headers_path,
     'src/imgui', # imgui headers
+    'src/entt',
+    'sol2/single/include',
     godot_headers_path,
     cpp_bindings_path + 'include/',
     cpp_bindings_path + 'include/core/',
@@ -137,7 +142,10 @@ sources = Glob('src/*.cpp')
 imgui_sources = Glob('src/imgui/*.cpp')
 
 
-library = env.SharedLibrary(target=env['target_path'] + env['target_name'] , source=sources + imgui_sources)
+# ecs source
+ecs_sources = Glob('src/ecs/*.cpp')
+
+library = env.SharedLibrary(target=env['target_path'] + env['target_name'] , source=sources + imgui_sources + ecs_sources)
 
 Default(library)
 

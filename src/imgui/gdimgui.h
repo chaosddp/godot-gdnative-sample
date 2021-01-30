@@ -10,7 +10,6 @@
 #include <VisualServer.hpp>
 #include <Resource.hpp>
 #include <Node.hpp>
-#include <Node2D.hpp>
 #include <Input.hpp>
 #include <InputEvent.hpp>
 #include <SceneTree.hpp>
